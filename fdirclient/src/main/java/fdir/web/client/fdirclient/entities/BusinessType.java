@@ -8,7 +8,6 @@ public class BusinessType {
     private String typeValue;
     private String name;
 
-    // Constructors, getters, and setters
     public BusinessType() {
     }
 

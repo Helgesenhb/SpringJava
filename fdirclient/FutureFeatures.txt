@@ -1,0 +1,43 @@
+1) Regarding Testing of the application:
+
+Will probably go with JUnit and Mockito 
+
+- The endpoints must be tested for availability and integrity (E.g are the resources still there? Have the resources been changed?)
+
+- Consider appropriate updates of persisted data depending on purpose of data and application.
+
+- Consider practicing TDD as much as possible.
+
+- I would normally start with Unit testing and move on to some form of integration testing in a test environment with a test database that mimics the production environment. If appropriate, ask customers/clients to test and verify (E.g acceptance testing maybe more relevant for UI part). 
+
+testing could also simply be a feature request definition where the test must accomplish what was asked in the feature request. This can be done by first
+breaking down the feature request/issue into smaller detailed tasks that can easier be defined by code.)
+
+
+2) Regarding optimization and robustness
+
+- Will ensure that the choice of technologies are researcher toroughly (E.g security risks, how easy is it to find people with required skills? etc)
+(E.g by choosing Java and Spring there will most likely be no shortage of documentation, people with knowledge out there, and strong insentive for keeping the language and tooling surounding it strong and robust.
+
+- Will write code that (as much as possible), will allow for adding new features without suffering from technical debt (E.g feature creep).
+  This can simply entail following good design patterns, SOLID principles, and generally write readable code.
+
+- I am a strong believer in good documentation, i say believer because I have yet to experience true benefits from written documentation. However, I do believe that having architecture diagrams or similar can be a good entry point for getting started with unknown projects specially for new people. 
+
+- Optimization can be as simple as indexing the database correctly (E.g how tables relate to one another in a relational database).
+
+- Generally go over the code written and try to optimize wherever possible, either by having code more readable or by choosing a different approach for writing code and library selections etc. 
+
+It can be an idea to have a performance testing strategy by using e.g Load testing
+
+Using logging where appropriate and redirect the logging information to its appropriate output files (E.g app-error.log, app.log), this can make the process of debugging easier if done correctly by separating the noice from the error messages.
+
+Learning the inner workings of the tooling that one works with, which in this case is Spring boot and java is upmost important for performance and robustness. 
+
+3) Regarding Persistence of Data
+
+- Given more time i would like to persist the data in a relational database like PostgreSQL, MySql or similar. NoSQL databases like MongoDb would be acceptible but in my experience there is rarely any need for such databases unless one deals with huge volumes of unstructured data.
+
+Also I think relational databases are more robust. Even tough they require more time to model at first I think that having restrictions on the datamodel can be a good thing to avoid feature creep and messy data that at a later point can be difficult to clean up and make sense of. Once a database is in use, you cannot simply start remodelling it, better start of the right way.
+
+In short, I would like to use JPA and a relational database where I would take the JSON response objects and transform them into POJOs using e.g Jackson for marshalling/unmarshalling the data. I also looked into a library for creating POJOs automatically from Swagger, this would ensure correct JSON to POJO modeling.  
