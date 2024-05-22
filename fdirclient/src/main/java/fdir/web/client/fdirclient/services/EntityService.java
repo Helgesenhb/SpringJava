@@ -2,8 +2,10 @@ package fdir.web.client.fdirclient.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import fdir.web.client.fdirclient.entities.BrregEntity;
 import fdir.web.client.fdirclient.entities.FdirEntity;
+import fdir.web.client.fdirclient.repositories.BrregEntityRepository;
 import fdir.web.client.fdirclient.repositories.FdirEntityRepository;
 
 import java.io.IOException;
@@ -14,11 +16,16 @@ public class EntityService {
     @Autowired
     private FdirEntityRepository fdirEntityRepository;
 
-    public FdirEntity saveEntity(String response) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        FdirEntity[] entities = objectMapper.readValue(response, FdirEntity[].class);
-        return fdirEntityRepository.save(entities[0]);
+    @Autowired
+    private BrregEntityRepository brregEntityRepository;
+
+    public FdirEntity saveFdirEntity(FdirEntity fdirEntity) throws IOException {
+        fdirEntityRepository.save(fdirEntity);
+        return fdirEntity;
     }
 
-    // Other service methods if needed
+    public BrregEntity saveBrregEntity(BrregEntity brregEntity) throws IOException {
+        brregEntityRepository.save(brregEntity);
+        return brregEntity;
+    }
 }
